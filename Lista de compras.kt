@@ -33,6 +33,8 @@ fun fazerAFeira() {
     println("Fruta retirada da lista!\nA lista atual é $feira")
    }
 
+    ///////////////////////////////////////////////////////////////////////////////
+
     println("Escolha a 2º fruta:")
     var escolha2 = readln().lowercase().trim()
 
@@ -65,7 +67,7 @@ fun fazerAFeira() {
     var simouNao = readln().lowercase()
 
 
-    while (simouNao != "s" && simouNao != "pare")
+    while (simouNao != "s" && simouNao != "pare" && simouNao != "nao" && simouNao != "não" )
     { println("Deseja continuar comprando? (S Ou PARE)")
         simouNao = readln().lowercase().trim()
     }
@@ -81,12 +83,16 @@ fun fazerAFeira() {
 
         var escolha3 = readln().lowercase().trim()
 
-        while (escolha3.isBlank() || escolha3 !in feira)
+        while (escolha3.isBlank() || escolha3 !in feira || escolha3==escolha2)
         {
 
             if (escolha3.isBlank())
             {
                 println("Nada foi digitado.")
+            }
+            else if (escolha3==escolha2)
+            {
+                println("Fruta já retirada da lista!\nA lista atual é : $feira")
             }
             else if (escolha3 !in feira)
             {
