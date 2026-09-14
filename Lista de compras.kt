@@ -10,8 +10,8 @@ fun fazerAFeira() {
     println("Informe a fruta escolhida:")
     var escolha = readln().lowercase().trim()
 
-    // Tratando todas as escolhas de forma independente com o laço:
- 
+    // PRIMEIRA ESCOLHA TRATADA DE FORMA INDEPENDENTE (e as outras também)
+
     while (escolha.isBlank() || escolha !in feira)
     {
         if (escolha.isBlank())
@@ -20,26 +20,22 @@ fun fazerAFeira() {
         }
         else if (escolha !in feira)
         {
-            println("Indisponível no nosso mercado")
+            println("Indisponível no nosso mercado. As disponíveis são $feira")
         }
 
         println("Digite novamente:")
         escolha = readln().lowercase().trim()
     }
 
-   if (escolha in feira)
+   if (escolha in feira) // If iniciado para fins de organização, apenas
    {
     feira.remove(escolha)
     println("Fruta retirada da lista!\nA lista atual é $feira")
    }
 
-    ///////////////////////////////////////////////////////////////////////////////
-
-
     println("Escolha a 2º fruta:")
     var escolha2 = readln().lowercase().trim()
 
-    // Mudamos para rodar enquanto a escolha2 NÃO for válida para remoção
     while (escolha2.isBlank() || escolha2 !in feira || escolha2 == escolha)
     {
         if (escolha2.isBlank())
@@ -74,11 +70,10 @@ fun fazerAFeira() {
         simouNao = readln().lowercase().trim()
     }
 
-    if(simouNao== "pare" || simouNao=="n" || simouNao == "Nao")
-    { println("Compra finalizada! O restanteS foi: $feira")
+    if(simouNao== "pare" || simouNao=="n" || simouNao == "nao")
+    { println("Compra finalizada! A lista atual é: $feira")
 
     }
-
 
     else if (simouNao=="s")
     {
@@ -86,10 +81,15 @@ fun fazerAFeira() {
 
         var escolha3 = readln().lowercase().trim()
 
-        while (escolha3.isBlank() || escolha3 !in feira) {
-            if (escolha3.isBlank()) {
+        while (escolha3.isBlank() || escolha3 !in feira)
+        {
+
+            if (escolha3.isBlank())
+            {
                 println("Nada foi digitado.")
-            } else if (escolha3 !in feira) {
+            }
+            else if (escolha3 !in feira)
+            {
                 println("Indisponível no nosso mercado")
             }
 
