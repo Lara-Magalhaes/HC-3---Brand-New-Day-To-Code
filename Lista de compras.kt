@@ -3,16 +3,15 @@ fun main() {
 }
 
 fun fazerAFeira() {
-    // CORREÇÃO: Adicionadas as aspas nas frutas da lista
+
     var feira = mutableListOf("jabuticaba", "cupuaçu", "tamarindo")
 
-    // CORREÇÃO: Adicionadas as aspas no texto do println
     println("\nAs frutas disponíveis são : $feira")
     println("Informe a fruta escolhida:")
     var escolha = readln().lowercase().trim()
 
-    // PRIMEIRA ESCOLHA TRATADA DE FORMA INDEPENDENTE
-    // Mudamos para rodar enquanto a escolha NÃO for válida para remoção
+    // Tratando todas as escolhas de forma independente com o laço:
+ 
     while (escolha.isBlank() || escolha !in feira)
     {
         if (escolha.isBlank())
