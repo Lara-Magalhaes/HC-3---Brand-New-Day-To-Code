@@ -9,8 +9,8 @@ fun main(){
 fun comeco()
 {
     print("Por favor, escolha uma opção: ")
-    println("\n1- (Adicinar contatos)\n 2- (Buscar Contato)\n 3- Remover Contato\n 4- Sair da Agenda")
-    val resposta : = readln().toInt()
+    println("\n1- (Adicionar contatos)\n 2- (Buscar Contatos)\n 3- (Remover Contatos)\n 4- (Sair da Agenda)\n 5- (Listar contatos)")
+    val resposta = readln().toInt()
 
     when (resposta) // vai ser true sempre
     {
@@ -18,8 +18,9 @@ fun comeco()
         2 -> buscar_Contato()
         3 -> remover_Contato()
         4-> sair_daqui()
+        5-> listar_Contatos()
 
-        else -> erro_aqui()
+        else -> erro_Aqui()
     }
 }
 fun adicionar_Contatos(){
@@ -27,7 +28,7 @@ fun adicionar_Contatos(){
     val nome : String = readln().trim()
 
     print("Informe o número desse contato: ")
-    val telefone: String= readln()
+    val telefone: String= readln().trim()
 
   if(  lista_Agenda.add(Agenda(nome,telefone)) )// aqui : nome e telefone (data classes) foram adicionados à agenda (um espaço para dois elementos)
     contador = contador + 1
@@ -48,20 +49,64 @@ fun buscar_Contato(){
 
     if (nomeEncontrado != null )
     {
-        print("Contato encontrado!\nO contato de $busca é: ${nomeEncontrado.telefone}")
+        println("Contato encontrado!\nO contato de $busca é: ${nomeEncontrado.telefone}\n")
     }
 
     else { println("Esse contato não existe.\nO número de contados na agenda é : $contador")}
 
+    comeco()
 }
 
 fun remover_Contato(){
-    print("OI")
+    print("Informe o nome do contato que deseje remover: ")
+    var remocao = readln().trim()
+
+    var remover = lista_Agenda.find{ it.nome.equals(remocao, ignoreCase = true) }
+
+    if (remover != null)
+    {
+        lista_Agenda.remove(remover)
+        println("Contato removido da Agenda!")
+        contador = contador - 1
+    }
+    else { print("Contato não encontrado.")}
+    comeco()
+
+
 }
 fun sair_daqui(){
-    print("ieeeeeiy")
+    println("Encerrando...")
+    println("O número de contatos é: $contador")
+    print("\n")
+    comeco()
+}
+fun listar_Contatos(){
+print("LISTA DE CONTATOS: ")
+
+    if(lista_Agenda.isEmpty()) { print("Você não tem contatos...")}
+    else
+    {
+        lista_Agenda.forEach { print("\nContato: \n Nome : ${it.nome}, Telefone: ${it.telefone}\n") }
+    }
+    print("\n")
+    print("\n")
+    comeco()
+
 }
 
-fun erro_aqui(){
-    print("NURRO")
+fun erro_Aqui(){
+    println("Essa opção não existe. Escolha uma opção: ")
+    println("\n1- (Adicionar contatos)\n 2- (Buscar Contatos)\n 3- (Remover Contatos)\n 4- (Sair da Agenda)")
+
+    val resposta2 = readln().toInt()
+
+    when (resposta2)
+    {
+        1 -> adicionar_Contatos()
+        2 -> buscar_Contato()
+        3 -> remover_Contato()
+        4-> sair_daqui()
+
+        else -> erro_Aqui()
+    }
 }
